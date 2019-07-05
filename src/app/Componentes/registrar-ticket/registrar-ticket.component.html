@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col s2">
+    </div>
+    <div class="col s6">
+      <h3>Ingreso de vehículo:</h3>
+      <div class="card">
+        <div class="card-content">
+          <form [formGroup]="todoForm">
+            <div class="input-field col-s12">
+              <p>Tipo de vehículo <strong style="color:Red;">*</strong></p>
+              <select class="custom-select form-control-alternative" id="tipoVehiculo" #typeVehicle
+                formControlName="tipoVehiculo"  style ="display: block">
+                <option selected value="">Seleccione</option>
+                <option *ngFor="let vehicle of types" [value]="vehicle.value.id">{{vehicle.value.name}}</option>
+              </select>
+            </div>
+            <div class="input-field col-s12">
+              <p>Placa <strong style="color:Red;">*</strong></p>
+              <input type="text" id="placaVehiculo" [(ngModel)]="ticket.placaVehiculo" pInputText placeholder="Placa"
+                class="form-control" maxlength="9" (keyup)="validarTexto()" formControlName="placaVehiculo">
+            </div>
+            <div class="input-field col-s12" *ngIf="cilindraje">
+              <p>Cilindraje <strong style="color:Red;">*</strong></p>
+              <input type="text" id="cilindraje" #displacement [(ngModel)]="ticket.cilindraje" pInputText placeholder="Cilindraje"
+                class="form-control" maxlength="4" (keyup)="validarNumero()" formControlName="cilindraje">
+            </div>
+            <div class="card-action">
+              <div class="input-field col-s12">
+                <button class="btn right" id="btnRegister" [disabled]="todoForm.invalid"
+                  (click)="registrarTicket()">Ingresar Vehículo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
